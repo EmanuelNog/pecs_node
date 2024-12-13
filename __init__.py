@@ -15,3 +15,5 @@ def deungeon_entrance(request):
 server.PromptServer.instance.routes.static("/pecs/js/", path=os.path.join(WEBROOT, "js"))
 
 __all__ = ['NODE_CLASS_MAPPINGS', 'NODE_DISPLAY_NAME_MAPPINGS']
+
+#test commit speed
