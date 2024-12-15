@@ -8,5 +8,9 @@
   }
   const workflow = await loadWorkflow()
 
-  console.log(workflow)
+  const server_address = window.location.hostname + ':' + window.loation.port
+  const socket = new WebSocket('ws://' + server_address + '/ws?clientId=' + client_id)
+  socket.addEventListener('open',(event) => {
+    console.log('connected to the server')
+  })
 })(window, document, undefined)
