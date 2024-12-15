@@ -4,9 +4,9 @@
 
   async function loadWorkflow(){
     const res = await fetch('/pecs/js/workflow_api.json')
-    return res.json()
+    return await res.json()
   }
   const workflow = await loadWorkflow()
 
   console.log(workflow)
-})
+})(window, document, undefined)
