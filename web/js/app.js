@@ -51,5 +51,6 @@
 
     await queuePrompt(workflow)
   }
+  window.sendPrompt = sendPrompt
 
 })(window, document, undefined)
