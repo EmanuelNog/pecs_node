@@ -46,9 +46,11 @@
   async function sendPrompt(){
     const prompt = document.getElementById('promptArea').value
     //workflow text
-    workflow = [3]['inputs']['text'] = prompt
+    //workflow = [3]['inputs']['text'] = prompt
+    workflow = [3].inputs.text = prompt
     //workflow seed
-    workflow = [2]['inputs']['noise_seed'] = Math.floor(Math.random() * 9999999999)
+    //workflow = [2]['inputs']['noise_seed'] = Math.floor(Math.random() * 9999999999)
+    workflow = [2].inputs.noise_seed = Math.floor(Math.random() * 9999999999)
 
     console.log('Loaded workflow:', workflow);
     await queuePrompt(workflow)
