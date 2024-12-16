@@ -8,7 +8,7 @@
   }
   const workflow = await loadWorkflow()
 
-  const server_address = window.location.hostname + ':' + window.loation.port
+  const server_address = window.location.hostname + ':' + window.location.port
   const socket = new WebSocket('ws://' + server_address + '/ws?clientId=' + client_id)
   socket.addEventListener('open',(event) => {
     console.log('connected to the server')
@@ -42,15 +42,14 @@
   }
 
 
+  async function sendPrompt(){
+    const prompt = document.getElementById('promptArea').value
+    //workflow text
+    workflow = [3]['inputs']['text'] = prompt
+    //workflow seed
+    workflow = [2]['inputs']['noise_seed'] = Math.floor(Math.random() * 9999999999)
+
+    await queuePrompt(workflow)
+  }
 
 })(window, document, undefined)
-
-async function sendPrompt(){
-  const prompt = document.getElementById('promptArea').value
-  //workflow text
-  workflow = [3]['inputs']['text'] = prompt
-  //workflow seed
-  workflow = [2]['inputs']['noise_seed'] = Math.floor(Math.random() * 9999999999)
-
-  await queuePrompt(workflow)
-}
