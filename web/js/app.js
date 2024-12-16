@@ -13,4 +13,43 @@
   socket.addEventListener('open',(event) => {
     console.log('connected to the server')
   })
+
+  const _maingen = document.getElementById('maingen')
+  socket.addEventListener('message', (event)=> {
+    const data = JSON.parse(event.data)
+    if (data.type === 'executed') {
+      if ('images' in data['data']['output']) {
+        const image = data['data']['output']['images'][0]
+        const filename = image['filename']
+        const subfolder = image['subfolder']
+        const rand = Math.random()
+
+        _maingen.src = '/view?filename=' + filename + '&type=ouput&subfolder=' + subfolder + '&rand=' + rand
+      }
+    }
+  })
+
+  async function queuePrompt(prompt = {}){
+    const data = {'prompt': prompt, 'client_id': client_id}
+    const response = await fetch('/prompt', {
+      method:'POST',
+      cache:'no-cache',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+  }
+
+
+  async function sendPrompt(){
+    const prompt = document.getElementById('promptArea').value
+    //workflow text
+    workflow = [3]['inputs']['text'] = prompt
+    //workflow seed
+    workflow = [2]['inputs']['noise_seed'] = Math.floor(Math.random() * 9999999999)
+
+    await queuePrompt(workflow)
+  }
+
 })(window, document, undefined)
