@@ -44,6 +44,7 @@
 
 
   async function sendPrompt(){
+    console.log('Loaded workflow:', workflow);
     const prompt = document.getElementById('promptArea').value
     //workflow text
     //workflow = [3]['inputs']['text'] = prompt
