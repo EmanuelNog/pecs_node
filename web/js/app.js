@@ -50,9 +50,9 @@
     //workflow seed
     workflow = [2]['inputs']['noise_seed'] = Math.floor(Math.random() * 9999999999)
 
+    console.log('Loaded workflow:', workflow);
     await queuePrompt(workflow)
   }
   document.getElementById('sendButton')?.addEventListener('click', sendPrompt);
 
-  console.log('Loaded workflow:', workflow);
 })(window, document, undefined)
