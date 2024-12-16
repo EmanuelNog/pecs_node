@@ -94,18 +94,6 @@
       "title": "VAE Decode"
     }
   },
-  "7": {
-    "inputs": {
-      "images": [
-        "6",
-        0
-      ]
-    },
-    "class_type": "PreviewImage",
-    "_meta": {
-      "title": "Preview Image"
-    }
-  },
   "8": {
     "inputs": {
       "lora_name": "t10c5.safetensors",
@@ -123,6 +111,19 @@
     "class_type": "LoraLoader",
     "_meta": {
       "title": "Load LoRA"
+    }
+  },
+  "9": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
     }
   }
 }
