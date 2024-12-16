@@ -54,4 +54,5 @@
   }
   document.getElementById('sendButton')?.addEventListener('click', sendPrompt);
 
+  console.log('Loaded workflow:', workflow);
 })(window, document, undefined)
