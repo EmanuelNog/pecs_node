@@ -51,6 +51,6 @@
 
     await queuePrompt(workflow)
   }
-  window.sendPrompt = sendPrompt
+  document.getElementById('sendButton')?.addEventListener('click', sendPrompt);
 
 })(window, document, undefined)
