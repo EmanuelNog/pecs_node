@@ -17,9 +17,9 @@
 
   const _maingen = document.getElementById('maingen')
   socket.addEventListener('message', (event)=> {
-    console.log(event.data)
+    console.log("Event Data:", event.data)
     const data = JSON.parse(event.data)
-    console.log(data)
+    console.log("Json Parsed Data:", data)
     if (data.type === 'executed') {
       if ('images' in data['data']['output']) {
         const image = data['data']['output']['images'][0]
@@ -42,6 +42,7 @@
       },
       body: JSON.stringify(data)
     })
+    console.log("Fetch Response", response)
   }
 
 
