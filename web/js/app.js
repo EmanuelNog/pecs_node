@@ -27,7 +27,8 @@
         const subfolder = image['subfolder']
         const rand = Math.random()
 
-        _maingen.src = '/view?filename=' + filename + '&type=ouput&subfolder=' + subfolder + '&rand=' + rand
+        _maingen.src = '/view?filename=' + filename
+          //+ '&type=ouput&subfolder=' + subfolder + '&rand=' + rand
       }
     }
   })
