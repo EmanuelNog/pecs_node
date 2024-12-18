@@ -99,6 +99,7 @@
   function dwn_canv(){
     var canvas = document.getElementById("canvas")
     image = canvas.toDataURL("image/png",1.0).replace("image/png","image/octet-stream")
+    var link = document.createElement('a');
     link.download = document.getElementById("card_name").value
     link.href = image
     link.click()
