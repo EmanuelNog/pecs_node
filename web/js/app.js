@@ -1,6 +1,6 @@
 (async (window, document, undefined) =>{
-  function uuidv4() { return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)); }
-  const client_id = uuidv4();
+  function uuidv4() { return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)) }
+  const client_id = uuidv4()
 
   async function loadWorkflow(){
     const res = await fetch('/pecs/js/workflow_api.json')
@@ -8,9 +8,9 @@
   }
   const workflow = await loadWorkflow()
 
-  const protocol = window.location.protocol === "https:" ? "wss" : "ws";
+  const protocol = window.location.protocol === "https:" ? "wss" : "ws"
   const server_address = window.location.hostname + ':' + window.location.port
-  const socket = new WebSocket(`${protocol}://${server_address}/ws?clientId=${client_id}`);
+  const socket = new WebSocket(`${protocol}://${server_address}/ws?clientId=${client_id}`)
   socket.addEventListener('open',(event) => {
     console.log('connected to the server')
   })
@@ -59,29 +59,29 @@
             }
           })
       ),
-    );
+    )
   
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
+    const canvas = document.getElementById("canvas")
+    const ctx = canvas.getContext("2d")
   
     ctx.drawImage(
-      document.getElementById("maingen"),0,0);
+      document.getElementById("maingen"),0,0)
   
     ctx.strokeStyle = "white"
     ctx.lineWidth = 102
     ctx.strokeRect(1,1, 1024, 1024)
   
-    ctx.lineWidth = 200;
-    ctx.strokeStyle = "white";
-    ctx.moveTo(0, 950);
-    ctx.lineTo(1024, 950);
-    ctx.stroke();
+    ctx.lineWidth = 200
+    ctx.strokeStyle = "white"
+    ctx.moveTo(0, 950)
+    ctx.lineTo(1024, 950)
+    ctx.stroke()
     
     var name = document.getElementById("card_name").value
-    ctx.font = "50px Arial";
-    ctx.fillText(name,150,950, 750);
+    ctx.font = "50px Arial"
+    ctx.fillText(name,150,950, 750)
   }
-  document.getElementById('redraw_canv')?.addEventListener('click', draw);
+  document.getElementById('redraw_canv')?.addEventListener('click', draw)
 
   async function sendPrompt(){
     const prompt = document.getElementById('promptArea').value
@@ -90,11 +90,20 @@
     //workflow seed
     workflow[2]['inputs']['noise_seed'] = Math.floor(Math.random() * 9999999999)
 
-    console.log('Loaded workflow:', workflow);
+    console.log('Loaded workflow:', workflow)
     await queuePrompt(workflow)
     await draw()
   }
-  document.getElementById('sendButton')?.addEventListener('click', sendPrompt);
+  document.getElementById('sendButton')?.addEventListener('click', sendPrompt)
+
+  function dwn_canv(){
+    var canvas = document.getElementById("canvas")
+    image = canvas.toDataURL("image/png",1.0).replace("image/png","image/octet-stream")
+    link.download = document.getElementById("card_name").value
+    link.href = image
+    link.click()
+  }
+  document.getElementById('dwn_canv')?.addEventListener('click', dwn_canv)
 
 })(window, document, undefined)
 //checkpoin
