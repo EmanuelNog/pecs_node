@@ -98,7 +98,13 @@
 
   function dwn_canv(){
     var canvas = document.getElementById("canvas")
-    image = canvas.toDataURL("image/png",1.0).replace("image/png","image/octet-stream")
+    const scaleCanvas = document.createElement("canvas")
+    scaleCanvas.width = 1024
+    scaleCanvas.height = 1024
+    const scaleCtx = scaleCanvas.getContext("2d")
+    scaleCtx.drawImage(canvas,0,0)
+
+    image = scaleCanvas.toDataURL("image/png",1.0).replace("image/png","image/octet-stream")
     var link = document.createElement('a');
     var name = document.getElementById("card_name").value
     link.download = name + ".png"
