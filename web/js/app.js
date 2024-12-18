@@ -46,6 +46,42 @@
     console.log("Fetch Response", response)
   }
 
+  async function draw() {
+    // Wait for all images to be loaded.
+    await Promise.all(
+      Array.from(document.images).map(
+        (image) =>
+          new Promise((resolve) => {
+            if (image.complete){
+              resolve()
+            } else {
+              image.addEventListener("load", resolve)
+            }
+          })
+      ),
+    );
+  
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+  
+    ctx.drawImage(
+      document.getElementById("maingen"),0,0);
+  
+    ctx.strokeStyle = "white"
+    ctx.lineWidth = 102
+    ctx.strokeRect(1,1, 1024, 1024)
+  
+    ctx.lineWidth = 200;
+    ctx.strokeStyle = "white";
+    ctx.moveTo(0, 950);
+    ctx.lineTo(1024, 950);
+    ctx.stroke();
+    
+    var name = document.getElementById("card_name").value
+    ctx.font = "50px Arial";
+    ctx.fillText(name,150,950, 750);
+  }
+  document.getElementById('redraw_canv')?.addEventListener('click', draw);
 
   async function sendPrompt(){
     const prompt = document.getElementById('promptArea').value
@@ -56,6 +92,7 @@
 
     console.log('Loaded workflow:', workflow);
     await queuePrompt(workflow)
+    await draw()
   }
   document.getElementById('sendButton')?.addEventListener('click', sendPrompt);
 
