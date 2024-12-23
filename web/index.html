@@ -3,14 +3,20 @@
   <head>
     
   </head>
-  <body>
-    <textarea rows="" cols="" id="promptArea"></textarea>
-    <button id="sendButton">send prompt</button>
+  <body style="background-color: #1c1c1c">
     <div>
+      <h3>Descreva a Imagem</h3>
+      <textarea rows="" cols="" id="promptArea"></textarea>
+      <button id="sendButton">send prompt</button>
+    </div>
+    <div>
+      <h3>Texto do Cartão</h3>
       <input id="card_name" type="text" name="card name" value="">
       <button id="redraw_canv">insert text</button>
     </div>
-    <img src="" width="512" height="512" id="maingen">
+    <div>
+      <img src="" width="512" height="512" id="maingen">
+    </div>
     <button id="dwn_canv">Download Canvas</button>
     <canvas id="canvas" width="1024" height="1024"></canvas>
     <script src="/pecs/js/app.js"></script>
