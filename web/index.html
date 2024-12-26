@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html">
+    <link rel="stylesheet" href="https://unpkg.com/simpledotcss/simple.css">
   </head>
-  <body style="">
+  <body>
     <div>
       <h3>Descreva a Imagem</h3>
-      <textarea rows="" cols="" id="promptArea"></textarea>
+      <input id="promptArea"></input>
       <button id="sendButton">Criar Imagem</button>
     </div>
     <div>
@@ -18,8 +19,10 @@
       <input id="card_name" type="text" name="card name" value="">
       <button id="redraw_canv">Inserir Texto</button>
     </div>
+    <div>
+      <canvas id="canvas" width="1024" height="1024"></canvas>
+    </div>
     <button id="dwn_canv">Baixar Cartão</button>
-    <canvas id="canvas" width="1024" height="1024"></canvas>
     <script src="/pecs/js/app.js"></script>
   </body>
 </html>
